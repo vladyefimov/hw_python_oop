@@ -26,22 +26,22 @@ class Calculator:
 
 class CashCalculator(Calculator):
 
-    USD_RATE = 60.0
-    EURO_RATE = 70.0
+    USD_RATE = 70.0
+    EURO_RATE = 80.0
     RUB_RATE = 1
 
-    currency_dict = {'usd': (USD_RATE, 'USD'),
-                     'eur': (EURO_RATE, 'Euro'),
-                     'rub': (RUB_RATE, 'руб')}
-
     def get_today_cash_remained(self, currency):
+
+        currency_dict = {'usd': (self.USD_RATE, 'USD'),
+                         'eur': (self.EURO_RATE, 'Euro'),
+                         'rub': (self.RUB_RATE, 'руб')}
 
         today_left = self.get_today_left()
 
         if today_left == 0:
             return f'Денег нет, держись'
 
-        rate, currency_text = self.currency_dict[currency]
+        rate, currency_text = currency_dict[currency]
         today_left_converted = abs(today_left / rate)
 
         if today_left > 0:
